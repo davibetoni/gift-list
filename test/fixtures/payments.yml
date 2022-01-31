@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: payments
+#
+#  id          :bigint           not null, primary key
+#  payer_name  :string
+#  payer_phone :string
+#  description :string
+#  amount      :float
+#  payer_city  :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  payer_name: MyString
+  payer_phone: MyString
+  description: MyString
+  amount: 1.5
+  payer_city: MyString
+
+two:
+  payer_name: MyString
+  payer_phone: MyString
+  description: MyString
+  amount: 1.5
+  payer_city: MyString
