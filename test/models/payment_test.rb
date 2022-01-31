@@ -10,6 +10,9 @@
 #  payer_city  :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  product_id  :integer
+#  pix         :string
+#  qr_code     :string
 #
 require "test_helper"
 

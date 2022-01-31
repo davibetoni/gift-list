@@ -1,29 +1,8 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Payer name:</strong>
-  <%= @payment.payer_name %>
-</p>
-
-<p>
-  <strong>Payer phone:</strong>
-  <%= @payment.payer_phone %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @payment.description %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @payment.amount %>
-</p>
-
-<p>
-  <strong>Payer city:</strong>
-  <%= @payment.payer_city %>
-</p>
-
-<%= link_to 'Edit', edit_payment_path(@payment) %> |
-<%= link_to 'Back', payments_path %>
+<h2>OBRIGADO!</h2>
+<h4>Chave pix: <%=@payment.pix%></h4>
+<br>
+<h4>QR CODE:</h4>
+<img src="<%=@payment.qr_code%>">
+<br>
+<%= link_to 'Back', product_payments_path(@product) %>

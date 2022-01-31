@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1 or /products/1.json
-  def show; end
+  def show
+    @payments = Payment.where(product_id: @product.id)
+  end
 
   # GET /products/new
   def new

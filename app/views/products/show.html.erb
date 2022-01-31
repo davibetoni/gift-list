@@ -1,14 +1,15 @@
+<br>
+<h4><%=@payments.count%> amigos ja ajudaram!</h4>
+<h4>Falta apenas <%=(@product.value - @payments.sum('amount'))%> pra gente poder comprar o(a) <%=@product.name%></h4>
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
 </p>
-
 <p>
   <strong>Value:</strong>
   <%= @product.value %>
 </p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Recebidos', product_payments_path(@product) %> |
+<%= link_to 'Pagar', new_product_payment_path(@product) %> |
 <%= link_to 'Back', products_path %>

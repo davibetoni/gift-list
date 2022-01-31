@@ -10,6 +10,7 @@ gem 'qrcode_pix_ruby', '~> 0.5.0'
 gem 'rubocop', '~> 1.25'
 gem 'solargraph', '~> 0.44.3'
 gem 'sprockets', '~> 3.7.2'
+gem 'htmlbeautifier', '~> 1.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.4'

@@ -3,14 +3,18 @@ class PaymentsController < ApplicationController
 
   # GET /payments or /payments.json
   def index
+    @product = Product.find(params[:product_id])
     @payments = Payment.all
   end
 
   # GET /payments/1 or /payments/1.json
-  def show; end
+  def show
+    @product = Product.find(params[:product_id])
+  end
 
   # GET /payments/new
   def new
+    @product = Product.find(params[:product_id])
     @payment = Payment.new
   end
 
@@ -19,11 +23,12 @@ class PaymentsController < ApplicationController
 
   # POST /payments or /payments.json
   def create
-    @payment = Payment.new(payment_params)
+    @product = Product.find(params[:product_id])
+    @payment = @product.payments.new(payment_params)
 
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to payment_url(@payment), notice: 'Payment was successfully created.' }
+        format.html { redirect_to product_payment_url(@product, @payment), notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new, status: :unprocessable_entity }

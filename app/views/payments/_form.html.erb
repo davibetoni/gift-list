@@ -1,8 +1,7 @@
-<%= form_with(model: payment) do |form| %>
+<%= form_for([@product, @product.payments.new]) do |form| %>
   <% if payment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
-
       <ul>
         <% payment.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,32 +9,26 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :payer_name %>
     <%= form.text_field :payer_name %>
   </div>
-
   <div class="field">
     <%= form.label :payer_phone %>
     <%= form.text_field :payer_phone %>
   </div>
-
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
-
   <div class="field">
     <%= form.label :amount %>
     <%= form.text_field :amount %>
   </div>
-
   <div class="field">
     <%= form.label :payer_city %>
     <%= form.text_field :payer_city %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
