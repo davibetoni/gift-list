@@ -1,10 +1,40 @@
-<br>
-<br>
-<p id="notice"><%= notice %></p>
-<h2>OBRIGADO!</h2>
-<h4>Chave pix: <%=@payment.pix%></h4>
-<br>
-<h4>QR CODE:</h4>
-<img src="<%=@payment.qr_code%>">
-<br>
-<%= link_to 'Voltar a lista', products_path %>
+<section class="page-section" id="contact">
+  <div class="container">
+    <!-- Contact Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Obrigado!!</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <br>
+      <div class="divider-custom-line"></div>
+      <br>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <h3 class="mb-4">Valor: <%=@payment.amount%></h3>
+        <h4 class="mb-4">Clique na chave pix para copia-lá</h4>
+        <p class="mb-4"><span><%=@payment.pix%></span></p>
+      </div>
+      <div class="col-lg-5">
+        <h4>QR CODE:</h4>
+        <img src="<%=@payment.qr_code%>">
+      </div>
+    </div>
+    <%= link_to 'Voltar a lista', products_path %>
+  </div>
+</div>
+<script>
+  const span = document.querySelector("span");
+
+  span.onclick = function() {
+    document.execCommand("copy");
+  }
+
+  span.addEventListener("copy", function(event) {
+    event.preventDefault();
+    if (event.clipboardData) {
+      event.clipboardData.setData("text/plain", span.textContent);
+      console.log(event.clipboardData.getData("text"))
+    }
+  });
+</script>

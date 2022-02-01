@@ -18,9 +18,6 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
   end
 
-  # GET /payments/1/edit
-  def edit; end
-
   # POST /payments or /payments.json
   def create
     @product = Product.find(params[:product_id])

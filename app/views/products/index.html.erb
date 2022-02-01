@@ -41,22 +41,26 @@
                       <!-- Portfolio Modal - Text-->
                       <h3 class="mb-4">Valor: <%=product.value %></h3>
                       <p class="mb-4"><%=Payment.where(product_id: product.id).count%> amigos ja nos ajudaram a comprar esse produto! <br>
-                        Falta apenas <%=(product.value - Payment.where(product_id: product.id).sum('amount'))%> pra gente poder comprar o(a) <%=product.name%></p>
-                      <a href="<%= new_product_payment_path(product)%>" class="btn btn-primary">
-                        <i class="fas fa-gift"></i> <span> Enviar Pix</span>
-                      </a>
-                      <button class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-times fa-fw"></i> Fechar
-                      </button>
-                    </div>
+                        <%if (product.value - Payment.where(product_id: product.id).sum('amount')) > 0%>
+                          Falta apenas <%=(product.value - Payment.where(product_id: product.id).sum('amount'))%> pra gente poder comprar o(a) <%=product.name%></p>
+                      <%else%>
+                        Conseguimos o valor total!!! Mas fique a vontade se quiser ajudar mais :)</p>
+                    <%end%>
+                    <a href="<%= new_product_payment_path(product)%>" class="btn btn-primary">
+                      <i class="fas fa-gift"></i> <span> Enviar Pix</span>
+                    </a>
+                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                      <i class="fas fa-times fa-fw"></i> Fechar
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <%end%>
-    </div>
-    <%= link_to 'New Product', new_product_path %>
+      </div>
+    <%end%>
   </div>
+  <%= link_to 'New Product', new_product_path %>
+</div>
 </section>
