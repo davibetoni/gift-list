@@ -1,3 +1,5 @@
+<br>
+<br>
 <p id="notice"><%= notice %></p>
 <h2>OBRIGADO!</h2>
 <h4>Chave pix: <%=@payment.pix%></h4>
@@ -5,4 +7,4 @@
 <h4>QR CODE:</h4>
 <img src="<%=@payment.qr_code%>">
 <br>
-<%= link_to 'Back', product_payments_path(@product) %>
+<%= link_to 'Voltar a lista', products_path %>

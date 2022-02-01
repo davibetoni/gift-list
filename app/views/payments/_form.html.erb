@@ -1,35 +1,70 @@
-<%= form_for([@product, @product.payments.new]) do |form| %>
-  <% if payment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
-      <ul>
-        <% payment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<section class="page-section" id="contact">
+  <div class="container">
+    <!-- Contact Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Ajude a gente a comprar <br>
+      esse(a) <%=@product.name%></h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <br>
+      <div class="divider-custom-line"></div>
+      <br>
     </div>
-  <% end %>
-  <div class="field">
-    <%= form.label :payer_name %>
-    <%= form.text_field :payer_name %>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <%= form_for([@product, @product.payments.new]) do |form| %>
+          <div class="form-floating mb-3">
+            <%= form.text_field :payer_name, :class => 'form-control', placeholder: " ", required: true%>
+            <%= form.label :payer_name, 'Seu nome'%>
+            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+          </div>
+          <div class="form-floating mb-3">
+            <%= form.text_field :payer_phone, :class => 'form-control', placeholder: " ", required: true%>
+            <%= form.label :payer_phone, 'Seu telefone'%>
+            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+          </div>
+          <div class="form-floating mb-3">
+            <%= form.text_field :description, :class => 'form-control', placeholder: " ", required: true%>
+            <%= form.label :description, 'Uma mensagem pra nós ;)'%>
+            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+          </div>
+          <div class="form-floating mb-3">
+            <%= form.text_field :amount, :class => 'form-control', placeholder: " ", required: true%>
+            <%= form.label :amount, 'Quanto você deseja enviar?'%>
+            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+          </div>
+          <div class="form-floating mb-3">
+            <%= form.text_field :payer_city, :class => 'form-control', placeholder: " ", required: true%>
+            <%= form.label :payer_city, 'Sua cidade'%>
+            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+          </div>
+          <% if payment.errors.any? %>
+            <div class="d-none" id="submitErrorMessage">
+              <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+              <ul>
+                <% payment.errors.each do |error| %>
+                  <div class="text-center text-danger mb-3">
+                    <li><%= error.full_message %></li>
+                  </div>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <!-- Submit Button-->
+          <br>
+          <br>
+          <%= form.submit 'Enviar', :class => 'btn btn-primary btn-xl', :id => 'submitButton' %>
+        <%end%>
+      </div>
+      <div class="col-lg-5 justify-content-center">
+        <br>
+        <h3 class="mb-4">Valor: <%=@product.value %></h3>
+        <img class="img-fluid rounded mb-5" src="<%=@product.photo%>" alt="..." />
+        <p class="mb-4"><%=Payment.where(product_id: @product.id).count%> amigos ja nos ajudaram a comprar esse produto! <br>
+          Falta apenas <%=(@product.value - Payment.where(product_id: @product.id).sum('amount'))%> pra gente poder comprar o(a) <%=@product.name%></p>
+        <!-- Portfolio Modal - Text-->
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= form.label :payer_phone %>
-    <%= form.text_field :payer_phone %>
-  </div>
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
-  </div>
-  <div class="field">
-    <%= form.label :payer_city %>
-    <%= form.text_field :payer_city %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>
