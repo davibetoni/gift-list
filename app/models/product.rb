@@ -7,6 +7,7 @@
 #  value      :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  photo      :string
 #
 class Product < ApplicationRecord
   has_many :payments, dependent: :destroy
