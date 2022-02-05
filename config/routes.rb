@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  root 'homepage#index'
   resources :products, only: %i[index new create show] do
     resources :payments, only: %i[new create show index]
   end

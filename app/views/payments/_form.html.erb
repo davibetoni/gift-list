@@ -61,8 +61,19 @@
         <br>
         <h3 class="mb-4">Valor: <%=@product.value %></h3>
         <img class="img-fluid rounded mb-5" src="<%=@product.photo%>" alt="..." />
-        <p class="mb-4"><%=Payment.where(product_id: @product.id).count%> amigos ja nos ajudaram a comprar esse produto! <br>
-          Falta apenas <%=(@product.value - Payment.where(product_id: @product.id).sum('amount'))%> pra gente poder comprar o(a) <%=@product.name%></p>
+        <p class="mb-4">
+          <b><%=Payment.where(product_id: @product.id).count%> amigos ja nos ajudaram a comprar esse produto!</b>
+          <%if (@product.value - Payment.where(product_id: @product.id).sum('amount')) > 0%>
+            <div class="alert alert-warning" role="alert">
+              Falta apenas <b><%=number_to_currency_br((@product.value - Payment.where(product_id: @product.id).sum('amount')))%></b> pra gente poder comprar o(a) <%=@product.name%>
+            </div>
+          <%else%>
+            <div class="alert alert-success" role="alert">
+              Conseguimos o valor total!!! Mas fique a vontade se quiser ajudar mais :)
+              <br>
+              Ja temos <b><%=number_to_currency_br(Payment.where(product_id: @product.id).sum('amount'))%></b>!!</div>
+          <%end%>
+        </p>
         <!-- Portfolio Modal - Text-->
       </div>
     </div>
