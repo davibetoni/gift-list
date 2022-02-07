@@ -11885,3 +11885,26 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+@font-face {
+  font-family: "Holland";
+  src: url("./Holland.ttf");
+}
+@font-face {
+  font-family: "PT Serif Caption";
+  src: url("./PT_Serif-Caption-Web-Regular.ttf");
+}
+
+.home_title-title {
+  font-family: "Holland";
+  color: #303a4f;
+  font-size: 11vw;
+  font-style: italic;
+}
+.home_title-date {
+  font-family: "PT Serif Caption";
+  margin-top: 0.5em;
+  margin-left: 7em;
+  color: #303a4f;
+  font-size: 3vw;
+}
