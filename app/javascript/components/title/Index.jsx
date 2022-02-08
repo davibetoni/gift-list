@@ -6,7 +6,6 @@ export default () => (
       <div className="container secondary-color">
         <h1 className="display-4 home_title-title">Davi E Jhulia</h1>
         <h1 className="display-4 home_title-date">16 | 12 | 2022</h1>
-        <hr className="my-4" />
       </div>
     </div>
   </div>
