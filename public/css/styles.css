@@ -91,7 +91,7 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: #f6f6f6;
+  background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -11907,4 +11907,8 @@ html {
   margin-left: 7em;
   color: #303a4f;
   font-size: 3vw;
+}
+.home_beach-image {
+  margin-top: 8vw;
+  max-width: 99vw;
 }

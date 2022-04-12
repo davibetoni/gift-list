@@ -1,12 +1,10 @@
 import React from "react";
+import beach from "./davi-jhu-praia.png";
 
 export default () => (
   <div className="primary-color d-flex align-items-center justify-content-center">
     <div className="jumbotron jumbotron-fluid bg-transparent">
-      <div className="container secondary-color">
-        <h1 className="display-4 home_title-title">Davi E Jhulia</h1>
-        <h1 className="display-4 home_title-date">16 | 12 | 2022</h1>
-      </div>
+      <img className="home_beach-image" src={beach} alt="Praia" />
     </div>
   </div>
 );
