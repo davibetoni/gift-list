@@ -25,9 +25,8 @@ development:
   <<: *default
   database: gift_list_development
   host: localhost
-  pool: 5
-  username: gift_list
-  password: passwd
+  username: postgres
+  password: 123456
   port: 5432
 
   # The specified database role being used to connect to postgres.
@@ -63,6 +62,10 @@ development:
 test:
   <<: *default
   database: wedding_gift_list_test
+  host: localhost
+  username: postgres
+  password: 123456
+  port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
