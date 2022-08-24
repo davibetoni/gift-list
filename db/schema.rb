@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_000634) do
+ActiveRecord::Schema.define(version: 2022_08_19_174501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_000634) do
     t.string "payer_name"
     t.string "payer_phone"
     t.string "description"
-    t.float "amount"
+    t.string "value"
     t.string "payer_city"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_000634) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "photo"
+    t.string "store_url"
   end
 
   add_foreign_key "payments", "products"

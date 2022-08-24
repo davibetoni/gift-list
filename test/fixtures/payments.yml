@@ -6,7 +6,7 @@
 #  payer_name  :string
 #  payer_phone :string
 #  description :string
-#  amount      :float
+#  value       :string
 #  payer_city  :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

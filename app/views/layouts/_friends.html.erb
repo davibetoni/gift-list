@@ -1,0 +1,12 @@
+<p class="mb-4">
+  <%unless product.paid?%>
+    <div class="alert alert-warning" role="alert">
+      Falta apenas <b><%=number_to_currency_br((product.value - product.paid))%></b> pra gente poder comprar o(a)
+      <%=product.name%>
+    </div>
+  <%else%>
+    <div class="alert alert-success" role="alert">
+      Conseguimos o valor total!!! Mas fique a vontade se quiser ajudar mais
+    </div>
+  <%end%>
+</p>

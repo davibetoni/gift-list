@@ -1,0 +1,42 @@
+<div class="portfolio-modal modal fade" id="portfolioModal<%=product.id%>" tabindex="-1" aria-labelledby="portfolioModal<%=product.id%>" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body text-center pb-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- Portfolio Modal - Title-->
+              <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">
+                <%=product.name%>
+              </h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <!-- Portfolio Modal - Image-->
+              <img class="img-fluid rounded mb-5" src="<%=product.photo%>" alt="..." />
+              <!-- Portfolio Modal - Text-->
+              <h3 class="mb-4">Valor:
+                <%=number_to_currency_br(product.value) %>
+              </h3>
+              <%= render './layouts/friends', product: product %>
+              <a href="<%= new_product_payment_path(product)%>" class="btn btn-primary">
+                <i class="fas fa-gift"></i> <span> Enviar Pix</span>
+              </a>
+              <% if product.store_url%>
+                <a href="<%= product.store_url%>" target="_blank" class="btn btn-primary">
+                  <i class="fas fa-store"></i> <span> Ir pra loja</span>
+                </a>
+              <% end %>
+              <button class="btn btn-primary" data-bs-dismiss="modal">
+                <i class="fas fa-times fa-fw"></i> Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

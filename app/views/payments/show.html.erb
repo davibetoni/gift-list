@@ -11,7 +11,9 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-lg-7">
-        <h3 class="mb-4">Valor: <%=@payment.amount%></h3>
+        <h3 class="mb-4">Valor:
+          <%=@payment.value%>
+        </h3>
         <h4 class="mb-4">Clique na chave pix para copia-lá</h4>
         <p class="mb-4"><span><%=@payment.pix%></span></p>
       </div>
@@ -20,21 +22,20 @@
         <img src="<%=@payment.qr_code%>">
       </div>
     </div>
-    <%= link_to 'Voltar a lista', products_path %>
   </div>
 </div>
 <script>
   const span = document.querySelector("span");
 
   span.onclick = function() {
-    document.execCommand("copy");
+      document.execCommand("copy");
   }
 
   span.addEventListener("copy", function(event) {
-    event.preventDefault();
-    if (event.clipboardData) {
-      event.clipboardData.setData("text/plain", span.textContent);
-      console.log(event.clipboardData.getData("text"))
-    }
+      event.preventDefault();
+      if (event.clipboardData) {
+          event.clipboardData.setData("text/plain", span.textContent);
+          console.log(event.clipboardData.getData("text"))
+      }
   });
 </script>

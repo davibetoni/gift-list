@@ -11,4 +11,18 @@
 #
 class Product < ApplicationRecord
   has_many :payments, dependent: :destroy
+
+  def paid?
+    paid >= value
+  end
+
+  def paid
+    amount_paid
+  end
+
+  private 
+
+  def amount_paid
+    payments.map(&:amount).compact.sum
+  end
 end

@@ -1,81 +1,98 @@
-<section class="page-section" id="contact">
-  <div class="container">
-    <!-- Contact Section Heading-->
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Ajude a gente a comprar <br>
-      esse(a) <%=@product.name%></h2>
-    <!-- Icon Divider-->
-    <div class="divider-custom">
-      <div class="divider-custom-line"></div>
-      <br>
-      <div class="divider-custom-line"></div>
-      <br>
-    </div>
-    <!-- Contact Section Form-->
-    <div class="row justify-content-center">
-      <div class="col-lg-7">
-        <%= form_for([@product, @product.payments.new]) do |form| %>
-          <div class="form-floating mb-3">
-            <%= form.text_field :payer_name, :class => 'form-control', placeholder: " ", required: true%>
-            <%= form.label :payer_name, 'Seu nome'%>
-            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-          </div>
-          <div class="form-floating mb-3">
-            <%= form.text_field :payer_phone, :class => 'form-control', placeholder: " ", required: true%>
-            <%= form.label :payer_phone, 'Seu telefone'%>
-            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-          </div>
-          <div class="form-floating mb-3">
-            <%= form.text_field :description, :class => 'form-control', placeholder: " ", required: true%>
-            <%= form.label :description, 'Uma mensagem pra nós ;)'%>
-            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-          </div>
-          <div class="form-floating mb-3">
-            <%= form.text_field :amount, :class => 'form-control', placeholder: " ", required: true%>
-            <%= form.label :amount, 'Quanto você deseja enviar?'%>
-            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-          </div>
-          <div class="form-floating mb-3">
-            <%= form.text_field :payer_city, :class => 'form-control', placeholder: " ", required: true%>
-            <%= form.label :payer_city, 'Sua cidade'%>
-            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-          </div>
-          <% if payment.errors.any? %>
-            <div class="d-none" id="submitErrorMessage">
-              <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
-              <ul>
-                <% payment.errors.each do |error| %>
-                  <div class="text-center text-danger mb-3">
-                    <li><%= error.full_message %></li>
-                  </div>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <!-- Submit Button-->
-          <br>
-          <br>
-          <%= form.submit 'Enviar', :class => 'btn btn-primary btn-xl', :id => 'submitButton' %>
-        <%end%>
-      </div>
-      <div class="col-lg-5 justify-content-center">
-        <br>
-        <h3 class="mb-4">Valor: <%=@product.value %></h3>
-        <img class="img-fluid rounded mb-5" src="<%=@product.photo%>" alt="..." />
-        <p class="mb-4">
-          <b><%=Payment.where(product_id: @product.id).count%> amigos ja nos ajudaram a comprar esse produto!</b>
-          <%if (@product.value - Payment.where(product_id: @product.id).sum('amount')) > 0%>
-            <div class="alert alert-warning" role="alert">
-              Falta apenas <b><%=number_to_currency_br((@product.value - Payment.where(product_id: @product.id).sum('amount')))%></b> pra gente poder comprar o(a) <%=@product.name%>
-            </div>
-          <%else%>
-            <div class="alert alert-success" role="alert">
-              Conseguimos o valor total!!! Mas fique a vontade se quiser ajudar mais :)
-              <br>
-              Ja temos <b><%=number_to_currency_br(Payment.where(product_id: @product.id).sum('amount'))%></b>!!</div>
-          <%end%>
-        </p>
-        <!-- Portfolio Modal - Text-->
-      </div>
-    </div>
+<%= form_for([@product, @product.payments.new]) do |form| %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :payer_name, :class => 'form-control', placeholder: " ", required: true%>
+    <%= form.label :payer_name, 'Seu nome'%>
+    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
   </div>
-</section>
+  <div class="form-floating mb-3">
+    <%= form.text_field :payer_phone, :class => 'form-control', placeholder: " ", required: true%>
+    <%= form.label :payer_phone, 'Seu telefone'%>
+    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+  </div>
+  <div class="form-floating mb-3">
+    <%= form.text_field :description, :class => 'form-control', placeholder: " ", required: true%>
+    <%= form.label :description, 'Uma mensagem pra nós ;)'%>
+    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+  </div>
+  <div class="form-floating mb-3">
+    <%= form.text_field :value, :class => 'form-control', :id => 'payment_amount', placeholder: " ", required: true%>
+    <%= form.label :value, 'Quanto você deseja enviar?'%>
+    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+  </div>
+  <% if payment.errors.any? %>
+    <div class="d-none" id="submitErrorMessage">
+      <h2>
+        <%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+      <ul>
+        <% payment.errors.each do |error| %>
+          <div class="text-center text-danger mb-3">
+            <li>
+              <%= error.full_message %>
+            </li>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- Submit Button-->
+  <br>
+  <%= form.submit 'Enviar', :class => 'btn btn-primary btn-xl', :id => 'submitButton' %>
+  <%= link_to 'Voltar', products_path, :class => 'btn btn-primary btn-xl' %>
+<%end%>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  // Jquery Dependency
+
+  $("input[id='payment_amount']").on({
+      keyup: function() {
+          formatCurrency($(this));
+      },
+      blur: function() {
+          formatCurrency($(this), "blur");
+      }
+  });
+
+
+  function formatNumber(n) {
+      return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  }
+
+
+  function formatCurrency(input, blur) {
+      var input_val = input.val();
+
+      if (input_val === "") {
+          return;
+      }
+
+      var original_len = input_val.length;
+      var caret_pos = input.prop("selectionStart");
+
+      if (input_val.indexOf(",") >= 0) {
+          var decimal_pos = input_val.indexOf(",");
+          var left_side = input_val.substring(0, decimal_pos);
+          var right_side = input_val.substring(decimal_pos);
+
+          left_side = formatNumber(left_side);
+          right_side = formatNumber(right_side);
+
+          if (blur === "blur") {
+              right_side += "00";
+          }
+
+          right_side = right_side.substring(0, 2);
+          input_val = "R$" + left_side + "," + right_side;
+      } else {
+          input_val = formatNumber(input_val);
+          input_val = "R$" + input_val;
+
+          if (blur === "blur") {
+              input_val += ",00";
+          }
+      }
+      input.val(input_val);
+      var updated_len = input_val.length;
+      caret_pos = updated_len - original_len + caret_pos;
+      input[0].setSelectionRange(caret_pos, caret_pos);
+  }
+</script>

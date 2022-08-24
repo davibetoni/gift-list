@@ -1,2 +1,26 @@
-<%= render 'form', payment: @payment %>
-<%= link_to 'Back', product_payments_path %>
+<section class="page-section" id="contact">
+  <div class="container">
+    <!-- Contact Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Ajude a gente a comprar <br>
+      esse(a)
+      <%=@product.name%>
+    </h2>
+    <br>
+    <div class="divider-custom">
+      <h3 class="mb-4">Valor do produto:
+        <%=@product.value %>
+      </h3>
+    </div>
+    <div class="row justify-content-center">
+      <%= render './layouts/friends', product: @product %>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7 justify-content-center">
+        <img class="img-fluid rounded mb-5" src="<%=@product.photo%>" alt="..." />
+      </div>
+      <div class="col-lg-5">
+        <%= render 'form', payment: @payment %>
+      </div>
+    </div>
+  </div>
+</section>
