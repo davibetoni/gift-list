@@ -1,5 +1,6 @@
 import React from "react";
 import where from "./where.png";
+import './style.css';
 
 export default () => (
   <div>
