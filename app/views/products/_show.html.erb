@@ -22,10 +22,12 @@
                 <%=number_to_currency_br(product.value) %>
               </h3>
               <%= render './layouts/friends', product: product %>
+              <% if product.for == 'wedding'%>
               <a href="<%= new_product_payment_path(product)%>" class="btn btn-primary">
                 <i class="fas fa-gift"></i> <span> Enviar Pix</span>
               </a>
-              <% if product.store_url%>
+              <% end %>
+              <% if product.store_url && !product.paid?%>
                 <a href="<%= product.store_url%>" target="_blank" class="btn btn-primary">
                   <i class="fas fa-store"></i> <span> Ir pra loja</span>
                 </a>

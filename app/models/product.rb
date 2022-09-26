@@ -8,9 +8,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  photo      :string
+#  store_url  :string
+#  for        :integer          default("wedding")
 #
 class Product < ApplicationRecord
   has_many :payments, dependent: :destroy
+  enum for: { wedding: 0, bachelor: 1 }
 
   def paid?
     paid >= value
