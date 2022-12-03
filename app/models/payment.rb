@@ -19,7 +19,7 @@ gem 'qrcode_pix_ruby'
 class Payment < ApplicationRecord
   attr_accessor :amount
   belongs_to :product
-  before_create :generate_pix
+  after_create :generate_pix
 
   def amount
     value.tr('R$', '').tr('.', '').tr(',', '.').to_f if value
