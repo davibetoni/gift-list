@@ -19,7 +19,7 @@ gem 'qrcode_pix_ruby'
 class Payment < ApplicationRecord
   attr_accessor :amount
   belongs_to :product
-  after_create :generate_pix
+  before_create :generate_pix
 
   def amount
     value.tr('R$', '').tr('.', '').tr(',', '.').to_f if value
@@ -30,7 +30,6 @@ class Payment < ApplicationRecord
   def generate_pix
     pix = QrcodePixRuby::Payload.new(
       pix_key: '4783cc05-2b06-4b22-a090-4c6bff1e6038',
-      description: description,
       merchant_name: payer_name,
       transaction_id: product.id.to_s + ':' + id.to_s,
       amount: amount,
