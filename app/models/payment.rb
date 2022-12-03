@@ -30,14 +30,13 @@ class Payment < ApplicationRecord
   def generate_pix
     pix = QrcodePixRuby::Payload.new(
       pix_key: '4783cc05-2b06-4b22-a090-4c6bff1e6038',
-      merchant_name: payer_name,
       transaction_id: product.id.to_s + ':' + id.to_s,
       amount: amount,
       currency: '986',
       country_code: 'BR',
       repeatable: true
     )
-    self.description = description + ' ' + pix.transaction_id
+    self.description = payer_name.upcase + ': ' + description + ' ' + pix.transaction_id
     self.pix = pix.payload
     self.qr_code = pix.base64
     save!
